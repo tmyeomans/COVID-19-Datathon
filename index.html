@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
-        #map {
+        #emap {
             width: 2800px;
             height: 1871px;
         }
@@ -17,7 +17,7 @@
         <title></title>
     </head>
     <body>
-        <div id="map">
+        <div id="emap">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
@@ -32,16 +32,16 @@
         <script src="data/Edmonton_311_disturbance_2020_Jan_Apr_higher_1.js"></script>
         <script src="data/Edmonton_community_boundaries_2.js"></script>
         <script>
-        var map = L.map('map', {
+        var emap = L.emap('emap', {
             zoomControl:true, maxZoom:28, minZoom:1
         })
-        var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var hash = new L.Hash(emap);
+        emap.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             if (bounds_group.getLayers().length) {
-                map.fitBounds(bounds_group.getBounds());
+                emap.fitBounds(bounds_group.getBounds());
             }
         }
         function pop_EdmontonParks_0(feature, layer) {
@@ -74,9 +74,9 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_EdmontonParks_0');
-        map.getPane('pane_EdmontonParks_0').style.zIndex = 400;
-        map.getPane('pane_EdmontonParks_0').style['mix-blend-mode'] = 'normal';
+        emap.createPane('pane_EdmontonParks_0');
+        emap.getPane('pane_EdmontonParks_0').style.zIndex = 400;
+        emap.getPane('pane_EdmontonParks_0').style['mix-blend-mode'] = 'normal';
         var layer_EdmontonParks_0 = new L.geoJson(json_EdmontonParks_0, {
             attribution: '',
             interactive: false,
@@ -87,7 +87,7 @@
             style: style_EdmontonParks_0_0,
         });
         bounds_group.addLayer(layer_EdmontonParks_0);
-        map.addLayer(layer_EdmontonParks_0);
+        emap.addLayer(layer_EdmontonParks_0);
         function pop_Edmonton_311_disturbance_2020_Jan_Apr_higher_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -222,9 +222,9 @@
             }
             }
         }
-        map.createPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1');
-        map.getPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1').style.zIndex = 401;
-        map.getPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1').style['mix-blend-mode'] = 'normal';
+        emap.createPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1');
+        emap.getPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1').style.zIndex = 401;
+        emap.getPane('pane_Edmonton_311_disturbance_2020_Jan_Apr_higher_1').style['mix-blend-mode'] = 'normal';
         var layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1 = new L.geoJson(json_Edmonton_311_disturbance_2020_Jan_Apr_higher_1, {
             attribution: '',
             interactive: true,
@@ -235,7 +235,7 @@
             style: style_Edmonton_311_disturbance_2020_Jan_Apr_higher_1_0,
         });
         bounds_group.addLayer(layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1);
-        map.addLayer(layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1);
+        emap.addLayer(layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1);
         function pop_Edmonton_community_boundaries_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -260,9 +260,9 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_Edmonton_community_boundaries_2');
-        map.getPane('pane_Edmonton_community_boundaries_2').style.zIndex = 402;
-        map.getPane('pane_Edmonton_community_boundaries_2').style['mix-blend-mode'] = 'normal';
+        emap.createPane('pane_Edmonton_community_boundaries_2');
+        emap.getPane('pane_Edmonton_community_boundaries_2').style.zIndex = 402;
+        emap.getPane('pane_Edmonton_community_boundaries_2').style['mix-blend-mode'] = 'normal';
         var layer_Edmonton_community_boundaries_2 = new L.geoJson(json_Edmonton_community_boundaries_2, {
             attribution: '',
             interactive: false,
@@ -273,7 +273,7 @@
             style: style_Edmonton_community_boundaries_2_0,
         });
         bounds_group.addLayer(layer_Edmonton_community_boundaries_2);
-        map.addLayer(layer_Edmonton_community_boundaries_2);
+        emap.addLayer(layer_Edmonton_community_boundaries_2);
         setBounds();
         var i = 0;
         layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1.eachLayer(function(layer) {
@@ -302,13 +302,13 @@
               i++;
         });
         resetLabels([layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1,layer_Edmonton_community_boundaries_2]);
-        map.on("zoomend", function(){
+        emap.on("zoomend", function(){
             resetLabels([layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1,layer_Edmonton_community_boundaries_2]);
         });
-        map.on("layeradd", function(){
+        emap.on("layeradd", function(){
             resetLabels([layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1,layer_Edmonton_community_boundaries_2]);
         });
-        map.on("layerremove", function(){
+        emap.on("layerremove", function(){
             resetLabels([layer_Edmonton_311_disturbance_2020_Jan_Apr_higher_1,layer_Edmonton_community_boundaries_2]);
         });
         </script>
